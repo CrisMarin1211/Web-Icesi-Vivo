@@ -1,5 +1,13 @@
 {
   "version": "7",
   "dialect": "postgresql",
-  "entries": []
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1793844376912,
+      "tag": "0000_icesi_vivo_schema",
+      "breakpoints": true
+    }
+  ]
 }
