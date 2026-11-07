@@ -13,9 +13,11 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as AuthenticatedAlbumRouteImport } from './routes/_authenticated/album'
 import { Route as AuthenticatedEspeciesRouteImport } from './routes/_authenticated/especies'
 import { Route as AuthenticatedInicioRouteImport } from './routes/_authenticated/inicio'
 import { Route as AuthenticatedRetosIndexRouteImport } from './routes/_authenticated/retos.index'
+import { Route as AuthenticatedRetosKeyRouteImport } from './routes/_authenticated/retos.$key'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -36,6 +38,11 @@ const ResetPasswordRoute = ResetPasswordRouteImport.update({
   path: '/reset-password',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAlbumRoute = AuthenticatedAlbumRouteImport.update({
+  id: '/album',
+  path: '/album',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedEspeciesRoute = AuthenticatedEspeciesRouteImport.update({
   id: '/especies',
   path: '/especies',
@@ -51,21 +58,30 @@ const AuthenticatedRetosIndexRoute = AuthenticatedRetosIndexRouteImport.update({
   path: '/retos/',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedRetosKeyRoute = AuthenticatedRetosKeyRouteImport.update({
+  id: '/retos/$key',
+  path: '/retos/$key',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/album': typeof AuthenticatedAlbumRoute
   '/especies': typeof AuthenticatedEspeciesRoute
   '/inicio': typeof AuthenticatedInicioRoute
+  '/retos/$key': typeof AuthenticatedRetosKeyRoute
   '/retos/': typeof AuthenticatedRetosIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/album': typeof AuthenticatedAlbumRoute
   '/especies': typeof AuthenticatedEspeciesRoute
   '/inicio': typeof AuthenticatedInicioRoute
+  '/retos/$key': typeof AuthenticatedRetosKeyRoute
   '/retos': typeof AuthenticatedRetosIndexRoute
 }
 export interface FileRoutesById {
@@ -74,24 +90,43 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/_authenticated/album': typeof AuthenticatedAlbumRoute
   '/_authenticated/especies': typeof AuthenticatedEspeciesRoute
   '/_authenticated/inicio': typeof AuthenticatedInicioRoute
+  '/_authenticated/retos/$key': typeof AuthenticatedRetosKeyRoute
   '/_authenticated/retos/': typeof AuthenticatedRetosIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/auth' | '/reset-password' | '/especies' | '/inicio' | '/retos/'
+    | '/'
+    | '/auth'
+    | '/reset-password'
+    | '/album'
+    | '/especies'
+    | '/inicio'
+    | '/retos/$key'
+    | '/retos/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/reset-password' | '/especies' | '/inicio' | '/retos'
+  to:
+    | '/'
+    | '/auth'
+    | '/reset-password'
+    | '/album'
+    | '/especies'
+    | '/inicio'
+    | '/retos/$key'
+    | '/retos'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/auth'
     | '/reset-password'
+    | '/_authenticated/album'
     | '/_authenticated/especies'
     | '/_authenticated/inicio'
+    | '/_authenticated/retos/$key'
     | '/_authenticated/retos/'
   fileRoutesById: FileRoutesById
 }
@@ -132,6 +167,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/album': {
+      id: '/_authenticated/album'
+      path: '/album'
+      fullPath: '/album'
+      preLoaderRoute: typeof AuthenticatedAlbumRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/especies': {
       id: '/_authenticated/especies'
       path: '/especies'
@@ -153,18 +195,29 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedRetosIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/retos/$key': {
+      id: '/_authenticated/retos/$key'
+      path: '/retos/$key'
+      fullPath: '/retos/$key'
+      preLoaderRoute: typeof AuthenticatedRetosKeyRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAlbumRoute: typeof AuthenticatedAlbumRoute
   AuthenticatedEspeciesRoute: typeof AuthenticatedEspeciesRoute
   AuthenticatedInicioRoute: typeof AuthenticatedInicioRoute
+  AuthenticatedRetosKeyRoute: typeof AuthenticatedRetosKeyRoute
   AuthenticatedRetosIndexRoute: typeof AuthenticatedRetosIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAlbumRoute: AuthenticatedAlbumRoute,
   AuthenticatedEspeciesRoute: AuthenticatedEspeciesRoute,
   AuthenticatedInicioRoute: AuthenticatedInicioRoute,
+  AuthenticatedRetosKeyRoute: AuthenticatedRetosKeyRoute,
   AuthenticatedRetosIndexRoute: AuthenticatedRetosIndexRoute,
 }
 
