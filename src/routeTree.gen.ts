@@ -13,9 +13,13 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as AuthenticatedAlbumRouteImport } from './routes/_authenticated/album'
 import { Route as AuthenticatedEspeciesRouteImport } from './routes/_authenticated/especies'
 import { Route as AuthenticatedInicioRouteImport } from './routes/_authenticated/inicio'
+import { Route as AuthenticatedComunidadIndexRouteImport } from './routes/_authenticated/comunidad.index'
 import { Route as AuthenticatedRetosIndexRouteImport } from './routes/_authenticated/retos.index'
+import { Route as AuthenticatedRetosKeyRouteImport } from './routes/_authenticated/retos.$key'
+import { Route as AuthenticatedComunidadForoIdRouteImport } from './routes/_authenticated/comunidad.foro.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -36,6 +40,11 @@ const ResetPasswordRoute = ResetPasswordRouteImport.update({
   path: '/reset-password',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAlbumRoute = AuthenticatedAlbumRouteImport.update({
+  id: '/album',
+  path: '/album',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedEspeciesRoute = AuthenticatedEspeciesRouteImport.update({
   id: '/especies',
   path: '/especies',
@@ -46,27 +55,52 @@ const AuthenticatedInicioRoute = AuthenticatedInicioRouteImport.update({
   path: '/inicio',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedComunidadIndexRoute =
+  AuthenticatedComunidadIndexRouteImport.update({
+    id: '/comunidad/',
+    path: '/comunidad/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedRetosIndexRoute = AuthenticatedRetosIndexRouteImport.update({
   id: '/retos/',
   path: '/retos/',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedRetosKeyRoute = AuthenticatedRetosKeyRouteImport.update({
+  id: '/retos/$key',
+  path: '/retos/$key',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedComunidadForoIdRoute =
+  AuthenticatedComunidadForoIdRouteImport.update({
+    id: '/comunidad/foro/$id',
+    path: '/comunidad/foro/$id',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/album': typeof AuthenticatedAlbumRoute
   '/especies': typeof AuthenticatedEspeciesRoute
   '/inicio': typeof AuthenticatedInicioRoute
+  '/retos/$key': typeof AuthenticatedRetosKeyRoute
+  '/comunidad/': typeof AuthenticatedComunidadIndexRoute
   '/retos/': typeof AuthenticatedRetosIndexRoute
+  '/comunidad/foro/$id': typeof AuthenticatedComunidadForoIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/album': typeof AuthenticatedAlbumRoute
   '/especies': typeof AuthenticatedEspeciesRoute
   '/inicio': typeof AuthenticatedInicioRoute
+  '/retos/$key': typeof AuthenticatedRetosKeyRoute
+  '/comunidad': typeof AuthenticatedComunidadIndexRoute
   '/retos': typeof AuthenticatedRetosIndexRoute
+  '/comunidad/foro/$id': typeof AuthenticatedComunidadForoIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -74,25 +108,52 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/_authenticated/album': typeof AuthenticatedAlbumRoute
   '/_authenticated/especies': typeof AuthenticatedEspeciesRoute
   '/_authenticated/inicio': typeof AuthenticatedInicioRoute
+  '/_authenticated/retos/$key': typeof AuthenticatedRetosKeyRoute
+  '/_authenticated/comunidad/': typeof AuthenticatedComunidadIndexRoute
   '/_authenticated/retos/': typeof AuthenticatedRetosIndexRoute
+  '/_authenticated/comunidad/foro/$id': typeof AuthenticatedComunidadForoIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/auth' | '/reset-password' | '/especies' | '/inicio' | '/retos/'
+    | '/'
+    | '/auth'
+    | '/reset-password'
+    | '/album'
+    | '/especies'
+    | '/inicio'
+    | '/retos/$key'
+    | '/comunidad/'
+    | '/retos/'
+    | '/comunidad/foro/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/reset-password' | '/especies' | '/inicio' | '/retos'
+  to:
+    | '/'
+    | '/auth'
+    | '/reset-password'
+    | '/album'
+    | '/especies'
+    | '/inicio'
+    | '/retos/$key'
+    | '/comunidad'
+    | '/retos'
+    | '/comunidad/foro/$id'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/auth'
     | '/reset-password'
+    | '/_authenticated/album'
     | '/_authenticated/especies'
     | '/_authenticated/inicio'
+    | '/_authenticated/retos/$key'
+    | '/_authenticated/comunidad/'
     | '/_authenticated/retos/'
+    | '/_authenticated/comunidad/foro/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -132,6 +193,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/album': {
+      id: '/_authenticated/album'
+      path: '/album'
+      fullPath: '/album'
+      preLoaderRoute: typeof AuthenticatedAlbumRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/especies': {
       id: '/_authenticated/especies'
       path: '/especies'
@@ -146,6 +214,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedInicioRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/comunidad/': {
+      id: '/_authenticated/comunidad/'
+      path: '/comunidad'
+      fullPath: '/comunidad/'
+      preLoaderRoute: typeof AuthenticatedComunidadIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/retos/': {
       id: '/_authenticated/retos/'
       path: '/retos'
@@ -153,19 +228,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedRetosIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/retos/$key': {
+      id: '/_authenticated/retos/$key'
+      path: '/retos/$key'
+      fullPath: '/retos/$key'
+      preLoaderRoute: typeof AuthenticatedRetosKeyRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/comunidad/foro/$id': {
+      id: '/_authenticated/comunidad/foro/$id'
+      path: '/comunidad/foro/$id'
+      fullPath: '/comunidad/foro/$id'
+      preLoaderRoute: typeof AuthenticatedComunidadForoIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAlbumRoute: typeof AuthenticatedAlbumRoute
   AuthenticatedEspeciesRoute: typeof AuthenticatedEspeciesRoute
   AuthenticatedInicioRoute: typeof AuthenticatedInicioRoute
+  AuthenticatedRetosKeyRoute: typeof AuthenticatedRetosKeyRoute
+  AuthenticatedComunidadIndexRoute: typeof AuthenticatedComunidadIndexRoute
   AuthenticatedRetosIndexRoute: typeof AuthenticatedRetosIndexRoute
+  AuthenticatedComunidadForoIdRoute: typeof AuthenticatedComunidadForoIdRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAlbumRoute: AuthenticatedAlbumRoute,
   AuthenticatedEspeciesRoute: AuthenticatedEspeciesRoute,
   AuthenticatedInicioRoute: AuthenticatedInicioRoute,
+  AuthenticatedRetosKeyRoute: AuthenticatedRetosKeyRoute,
+  AuthenticatedComunidadIndexRoute: AuthenticatedComunidadIndexRoute,
   AuthenticatedRetosIndexRoute: AuthenticatedRetosIndexRoute,
+  AuthenticatedComunidadForoIdRoute: AuthenticatedComunidadForoIdRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
