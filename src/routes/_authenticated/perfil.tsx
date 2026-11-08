@@ -36,7 +36,7 @@ function Perfil() {
     setBusy(true);
     const { error } = await supabase.from("profiles").update({ display_name: name, username, bio }).eq("id", me!.user.id);
     setBusy(false);
-    if (error) return toast.error(error.code === "23505" ? "Ese seudónimo ya está en uso" : "No se pudo guardar");
+    if (error) { toast.error(error.code === "23505" ? "Ese seudónimo ya está en uso" : "No se pudo guardar"); return; }
     toast.success("Perfil actualizado");
     qc.invalidateQueries({ queryKey: ["me"] });
   }

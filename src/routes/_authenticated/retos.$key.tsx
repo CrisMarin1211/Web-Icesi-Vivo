@@ -71,7 +71,7 @@ function Quiz({ challengeKey, timed }: { challengeKey: string; timed: boolean })
     setChoice(i);
     const { data, error } = await supabase.rpc("submit_answer", { _question_id: q.id, _choice: i });
     setBusy(false);
-    if (error) return toast.error("No se pudo registrar tu respuesta");
+    if (error) { toast.error("No se pudo registrar tu respuesta"); return; }
     const r = data as unknown as Result;
     setResult(r);
     if (r.correct && r.points > 0) toast.success(`¡Correcto! +${r.points} puntos`);
@@ -148,7 +148,7 @@ function Quiz({ challengeKey, timed }: { challengeKey: string; timed: boolean })
 
 function shuffle<T>(a: T[]) {
   const b = [...a];
-  for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; }
+  for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j]!, b[i]!]; }
   return b;
 }
 
@@ -170,8 +170,8 @@ function Memory() {
     setOpen(o);
     if (o.length === 2) {
       setMoves((m) => m + 1);
-      if (pairs[o[0]] === pairs[o[1]]) {
-        const nm = new Set(matched); nm.add(o[0]); nm.add(o[1]);
+      if (pairs[o[0]!] === pairs[o[1]!]) {
+        const nm = new Set(matched); nm.add(o[0]!); nm.add(o[1]!);
         setTimeout(() => { setMatched(nm); setOpen([]); if (nm.size === cards.length) finish(moves + 1); }, 350);
       } else setTimeout(() => setOpen([]), 800);
     }
@@ -179,7 +179,7 @@ function Memory() {
 
   async function finish(m: number) {
     const { data, error } = await supabase.rpc("submit_memory", { _moves: m });
-    if (error) return toast.error("No se pudo registrar el resultado");
+    if (error) { toast.error("No se pudo registrar el resultado"); return; }
     const r = data as unknown as { points: number; repeated: boolean };
     setScore(r.points);
     if (!r.repeated) toast.success(`+${r.points} puntos`);

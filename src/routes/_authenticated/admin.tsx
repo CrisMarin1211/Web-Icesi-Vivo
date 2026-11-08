@@ -26,7 +26,7 @@ function Admin() {
 
   async function setPhoto(id: string, patch: { status?: string; featured?: boolean }) {
     const { error } = await supabase.from("photos").update(patch).eq("id", id);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     refresh();
   }
   async function resolve(r: { id: string; target_type: string; target_id: string }, hide: boolean) {
@@ -40,7 +40,7 @@ function Admin() {
   }
   async function reward(id: string, reward_status: string) {
     const { error } = await supabase.from("winners").update({ reward_status }).eq("id", id);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success("Estado del premio actualizado");
     refresh();
   }

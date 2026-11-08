@@ -162,7 +162,7 @@ function UploadDialog({ open, onOpenChange }: { open: boolean; onOpenChange: (o:
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
-    if (!file || !me) return toast.error("Selecciona una fotografía");
+    if (!file || !me) { toast.error("Selecciona una fotografía"); return; }
     setBusy(true);
     try {
       const path = await uploadMedia(file, "photos");
@@ -219,7 +219,7 @@ function PhotoDetail({ photo }: { photo: { id: string; image_url: string; title:
     e.preventDefault();
     if (!body.trim() || !me) return;
     const { error } = await supabase.from("photo_comments").insert({ photo_id: photo.id, user_id: me.user.id, body: body.trim() });
-    if (error) return toast.error("No se pudo comentar");
+    if (error) { toast.error("No se pudo comentar"); return; }
     setBody("");
     qc.invalidateQueries({ queryKey: ["photo-comments", photo.id] });
     qc.invalidateQueries({ queryKey: ["photos"] });

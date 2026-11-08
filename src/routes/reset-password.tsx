@@ -24,11 +24,11 @@ function Reset() {
   const navigate = useNavigate();
   async function submit(e: React.FormEvent) {
     e.preventDefault();
-    if (password.length < 8) return toast.error("Mínimo 8 caracteres");
+    if (password.length < 8) { toast.error("Mínimo 8 caracteres"); return; }
     setLoading(true);
     const { error } = await supabase.auth.updateUser({ password });
     setLoading(false);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success("Contraseña actualizada");
     navigate({ to: "/inicio" });
   }

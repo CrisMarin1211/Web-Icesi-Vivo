@@ -10,7 +10,7 @@ export const Route = createFileRoute("/_authenticated/especies")({
 });
 
 function Especies() {
-  const [active, setActive] = useState(SPECIES[0].key);
+  const [active, setActive] = useState(SPECIES[0]!.key);
   const s = SPECIES.find((x) => x.key === active)!;
   return (
     <div className="space-y-5">

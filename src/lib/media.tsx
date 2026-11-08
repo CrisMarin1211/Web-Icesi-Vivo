@@ -27,13 +27,13 @@ export function useMediaUrl(path?: string | null) {
   });
 }
 
-export function MediaImage({ path, alt, className }: { path?: string | null; alt: string; className?: string }) {
+export function MediaImage({ path, alt, className }: { path?: string | null | undefined; alt: string; className?: string | undefined }) {
   const { data } = useMediaUrl(path);
   if (!data) return <div className={cn("animate-pulse bg-muted", className)} />;
   return <img src={data} alt={alt} loading="lazy" className={className} />;
 }
 
-export function Avatar({ path, name, className }: { path?: string | null; name?: string | null; className?: string }) {
+export function Avatar({ path, name, className }: { path?: string | null | undefined; name?: string | null | undefined; className?: string | undefined }) {
   const { data } = useMediaUrl(path);
   const initials = (name || "?").trim().slice(0, 2).toUpperCase();
   return (
