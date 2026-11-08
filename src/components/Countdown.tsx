@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export function useCountdown(target?: string) {
+export function useCountdown(target?: string | undefined) {
   const [now, setNow] = useState(() => Date.now());
   useEffect(() => {
     const t = setInterval(() => setNow(Date.now()), 1000);
@@ -15,7 +15,7 @@ export function useCountdown(target?: string) {
   };
 }
 
-export function Countdown({ target, compact }: { target?: string; compact?: boolean }) {
+export function Countdown({ target, compact }: { target?: string | undefined; compact?: boolean }) {
   const c = useCountdown(target);
   const parts: [number, string][] = [[c.days, "días"], [c.hours, "horas"], [c.minutes, "min"], [c.seconds, "seg"]];
   if (compact) return <span className="tabular-nums">{c.days}d {c.hours}h {c.minutes}m</span>;

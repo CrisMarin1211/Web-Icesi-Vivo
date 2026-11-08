@@ -35,7 +35,7 @@ function PostPage() {
     e.preventDefault();
     if (!me || !body.trim()) return;
     const { error } = await supabase.from("forum_comments").insert({ post_id: id, user_id: me.user.id, body: body.trim(), parent_id: replyTo });
-    if (error) return toast.error("No se pudo comentar");
+    if (error) { toast.error("No se pudo comentar"); return; }
     setBody(""); setReplyTo(null);
     qc.invalidateQueries({ queryKey: ["post-comments", id] });
   }

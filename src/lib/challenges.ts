@@ -41,7 +41,7 @@ export function weekStartISO(now = new Date()): string {
 /** Featured challenge rotates every week. */
 export function featuredChallenge(now = new Date()): Challenge {
   const weekIndex = Math.floor(weekStart(now).getTime() / (7 * 86400_000));
-  return CHALLENGES[((weekIndex % CHALLENGES.length) + CHALLENGES.length) % CHALLENGES.length];
+  return CHALLENGES[((weekIndex % CHALLENGES.length) + CHALLENGES.length) % CHALLENGES.length]!;
 }
 
 export function formatDate(d: Date | string) {
