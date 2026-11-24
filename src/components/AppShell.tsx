@@ -1,6 +1,6 @@
 import { Link, Outlet, useNavigate } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
-import { Home, Leaf, Gamepad2, BookImage, Users, Trophy, User, LogOut, Shield, Sparkles } from "lucide-react";
+import { Home, Leaf, Gamepad2, BookImage, Users, Trophy, User, LogOut, Shield, Sparkles, HeartHandshake } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useMe } from "@/lib/data";
 import { Avatar } from "@/lib/media";
@@ -13,6 +13,7 @@ const NAV = [
   { to: "/comunidad", label: "Comunidad", icon: Users },
   { to: "/ranking", label: "Ranking", icon: Trophy },
   { to: "/perfil", label: "Perfil", icon: User },
+  { to: "/ayuda", label: "Ayuda", icon: HeartHandshake },
 ] as const;
 
 export function AppShell() {
@@ -69,7 +70,7 @@ export function AppShell() {
 
       <nav className="fixed inset-x-2 bottom-2 z-40 flex justify-between rounded-3xl bg-foreground px-1.5 py-1.5 shadow-card md:hidden" style={{ paddingBottom: "max(0.375rem, env(safe-area-inset-bottom))" }}>
         {NAV.map(({ to, label, icon: Icon }) => (
-          <Link key={to} to={to} className="flex flex-1 flex-col items-center gap-0.5 rounded-2xl py-1.5 text-[10px] font-medium text-background/60" activeProps={{ className: "bg-lime text-lime-foreground" }}>
+          <Link key={to} to={to} className="flex flex-1 flex-col items-center gap-0.5 rounded-2xl py-1.5 text-[9px] font-medium text-background/60" activeProps={{ className: "bg-lime text-lime-foreground" }}>
             <Icon className="h-5 w-5" />
             {label}
           </Link>
