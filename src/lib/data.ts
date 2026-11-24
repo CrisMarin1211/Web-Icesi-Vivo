@@ -26,7 +26,7 @@ export function useCycle() {
     queryFn: async () => {
       const { data, error } = await supabase.rpc("ensure_cycle");
       if (error) throw error;
-      return data as unknown as { id: string; starts_at: string; ends_at: string; prize_species: string };
+      return data as unknown as { id: string; starts_at: string; ends_at: string; prize_species: string; in_season: boolean };
     },
   });
 }

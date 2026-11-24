@@ -85,7 +85,7 @@ function Admin() {
         {!winners?.length && <p className="text-sm text-muted-foreground">Aún no hay ganadores.</p>}
         {winners?.map((w) => (
           <div key={w.id} className="flex flex-wrap items-center gap-2 rounded-3xl bg-card p-4 shadow-card">
-            <span className="flex-1 text-sm font-semibold">{w.profiles?.display_name} · peluche {speciesByKey[w.prize_species as SpeciesKey]?.name}</span>
+            <span className="flex-1 text-sm font-semibold">{w.profiles?.display_name} · premio {speciesByKey[w.prize_species as SpeciesKey]?.name}</span>
             {(["pending_validation", "confirmed", "delivered"] as const).map((s) => (
               <Button key={s} size="sm" variant={w.reward_status === s ? "default" : "outline"} onClick={() => reward(w.id, s)}>{s === "pending_validation" ? "Pendiente" : s === "confirmed" ? "Confirmado" : "Entregado"}</Button>
             ))}

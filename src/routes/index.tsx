@@ -42,7 +42,7 @@ function Landing() {
           {[
             { icon: Gamepad2, title: "Retos semanales", text: "Juegos que premian la precisión de tus respuestas.", cls: "bg-violet text-violet-foreground" },
             { icon: Camera, title: "Fauna que nos acompaña", text: "Comparte tus fotografías, siempre a distancia.", cls: "bg-nature text-nature-foreground" },
-            { icon: Trophy, title: "Ranking quincenal", text: "El mejor guardián gana un peluche coleccionable.", cls: "bg-lime text-lime-foreground" },
+            { icon: Trophy, title: "Ranking semanal", text: "Gana camisetas, gorras y más del animal del mes.", cls: "bg-lime text-lime-foreground" },
           ].map(({ icon: Icon, title, text, cls }) => (
             <div key={title} className={`rounded-3xl p-6 ${cls}`}>
               <Icon className="h-7 w-7" />

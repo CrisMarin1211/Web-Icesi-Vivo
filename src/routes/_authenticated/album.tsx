@@ -55,7 +55,7 @@ function Album() {
         <div className="mt-3 flex flex-wrap gap-3">
           {unlocked >= 1 && <Badge label="Primer descubrimiento" />}
           {unlocked >= 4 && <Badge label="Explorador total" />}
-          {(wins?.length ?? 0) > 0 && <Badge label={`Guardián de la quincena ×${wins!.length}`} gold />}
+          {(wins?.length ?? 0) > 0 && <Badge label={`Guardián de la semana ×${wins!.length}`} gold />}
           {unlocked === 0 && <p className="text-sm text-muted-foreground">Aún no tienes insignias. <Link to="/retos" className="font-semibold text-primary">Empieza un reto</Link></p>}
         </div>
       </section>

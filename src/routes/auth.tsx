@@ -72,7 +72,7 @@ function AuthPage() {
         <span className="font-display text-2xl font-extrabold">ICESI VIVO</span>
         <div>
           <h1 className="text-5xl font-extrabold leading-tight">Conviértete en guardián de la biodiversidad.</h1>
-          <p className="mt-4 max-w-md opacity-90">Aprende, participa y compite por un peluche coleccionable cada quincena.</p>
+          <p className="mt-4 max-w-md opacity-90">Aprende, participa y compite cada semana por premios del animal del mes.</p>
         </div>
         <div className="absolute -right-16 -top-16 h-64 w-64 rounded-full bg-lime/90 blur-2xl opacity-40" />
       </div>

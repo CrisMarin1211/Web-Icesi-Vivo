@@ -77,6 +77,7 @@ export type Database = {
           created_at: string
           ends_at: string
           id: string
+          in_season: boolean
           prize_species: string
           starts_at: string
           status: string
@@ -85,6 +86,7 @@ export type Database = {
           created_at?: string
           ends_at: string
           id?: string
+          in_season?: boolean
           prize_species: string
           starts_at: string
           status?: string
@@ -93,6 +95,7 @@ export type Database = {
           created_at?: string
           ends_at?: string
           id?: string
+          in_season?: boolean
           prize_species?: string
           starts_at?: string
           status?: string
@@ -576,6 +579,7 @@ export type Database = {
           created_at: string
           ends_at: string
           id: string
+          in_season: boolean
           prize_species: string
           starts_at: string
           status: string
@@ -594,6 +598,7 @@ export type Database = {
         }
         Returns: boolean
       }
+      is_season: { Args: { _d: string }; Returns: boolean }
       leaderboard: {
         Args: { _cycle: string }
         Returns: {
@@ -610,6 +615,7 @@ export type Database = {
           username: string
         }[]
       }
+      month_species: { Args: { _d: string }; Returns: string }
       submit_answer: {
         Args: { _choice: number; _question_id: string }
         Returns: Json

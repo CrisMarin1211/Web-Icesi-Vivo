@@ -11,7 +11,7 @@ import { SPECIES, speciesByKey, type SpeciesKey } from "@/lib/species";
 import peluches from "@/assets/peluches.jpg";
 
 export const Route = createFileRoute("/_authenticated/ranking")({
-  head: () => ({ meta: [{ title: "Ranking — Guardianes de ICESI VIVO" }, { name: "description", content: "Ranking quincenal y premios coleccionables." }] }),
+  head: () => ({ meta: [{ title: "Ranking — Guardianes de ICESI VIVO" }, { name: "description", content: "Ranking semanal con premios del animal del mes." }] }),
   component: Ranking,
 });
 
@@ -36,8 +36,9 @@ function Ranking() {
     <div className="space-y-5">
       <section className="rounded-4xl bg-hero p-6 text-primary-foreground shadow-card">
         <p className="text-sm font-semibold text-lime">Guardianes de ICESI VIVO</p>
-        <h1 className="text-3xl font-extrabold">Ranking quincenal</h1>
-        {cycle && <p className="text-sm opacity-90">Ciclo {formatDate(cycle.starts_at)} – {formatDate(cycle.ends_at)}</p>}
+        <h1 className="text-3xl font-extrabold">Ranking semanal</h1>
+        {cycle && <p className="text-sm opacity-90">Semana {formatDate(cycle.starts_at)} – {formatDate(cycle.ends_at)} · Mes {prize ? `de ${prize.name}` : ""}</p>}
+        {cycle && !cycle.in_season && <p className="mt-2 inline-block rounded-full bg-primary-foreground/15 px-3 py-1 text-xs font-semibold">Vacaciones: puedes jugar, pero esta semana no hay premios. Vuelven en febrero y agosto.</p>}
         <div className="mt-4"><Countdown target={cycle?.ends_at} /></div>
 
         {top.length > 0 && (
@@ -57,7 +58,7 @@ function Ranking() {
 
       {iWonLast && (
         <div className="animate-pop rounded-4xl bg-lime p-6 text-lime-foreground">
-          <p className="text-2xl font-extrabold">🏆 ¡Felicitaciones! Eres el guardián de la biodiversidad de esta quincena.</p>
+          <p className="text-2xl font-extrabold">🏆 ¡Felicitaciones! Eres el guardián de la biodiversidad de esta semana.</p>
           <p className="mt-1 text-sm">Estado de tu premio: <b>{STATUS[last.reward_status]}</b>. El equipo Icesi te contactará para coordinar la entrega.</p>
         </div>
       )}
@@ -102,8 +103,8 @@ function Ranking() {
 
       <section className="rounded-4xl bg-violet p-6 text-violet-foreground">
         <h2 className="text-2xl font-extrabold">Los guardianes de ICESI VIVO</h2>
-        <p className="text-sm opacity-90">Cada quincena el ganador recibe un peluche coleccionable e insignia digital. La entrega se valida con la universidad.</p>
-        {prize && <p className="mt-2 rounded-full bg-lime px-3 py-1 text-sm font-bold text-lime-foreground inline-block">Peluche del ciclo: {prize.name} · {formatDate(cycle!.ends_at)}</p>}
+        <p className="text-sm opacity-90">Cada semana del semestre (febrero–junio y agosto–noviembre) el ganador recibe un premio del animal del mes, como camisetas o gorras, e insignia digital. Cada mes tiene su animal. La entrega se valida con la universidad.</p>
+        {prize && <p className="mt-2 rounded-full bg-lime px-3 py-1 text-sm font-bold text-lime-foreground inline-block">Animal del mes: {prize.name} · {formatDate(cycle!.ends_at)}</p>}
         <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-4">
           {SPECIES.map((s) => (
             <div key={s.key} className={`overflow-hidden rounded-3xl bg-card text-card-foreground ${prize?.key === s.key ? "ring-4 ring-lime" : ""}`}>

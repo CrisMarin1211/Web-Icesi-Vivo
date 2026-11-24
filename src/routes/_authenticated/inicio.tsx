@@ -66,13 +66,13 @@ function Home() {
         <div className="rounded-4xl bg-violet p-6 text-violet-foreground">
           <div className="flex items-center gap-2 text-sm font-semibold"><Clock className="h-4 w-4" /> Cierre de la competencia</div>
           <div className="mt-4"><Countdown target={cycle?.ends_at} /></div>
-          {cycle && <p className="mt-3 text-xs opacity-80">Ciclo {formatDate(cycle.starts_at)} – {formatDate(cycle.ends_at)}</p>}
+          {cycle && <p className="mt-3 text-xs opacity-80">Semana {formatDate(cycle.starts_at)} – {formatDate(cycle.ends_at)}</p>}
         </div>
 
         <Link to="/ranking" className="relative overflow-hidden rounded-4xl bg-card p-6 shadow-card">
           <div className="flex items-center gap-2 text-sm font-semibold text-primary"><Gift className="h-4 w-4" /> Próximo premio</div>
-          <h3 className="mt-2 text-2xl font-extrabold">Peluche {prize?.name ?? ""}</h3>
-          <p className="text-sm text-muted-foreground">{cycle ? `Premiación: ${formatDate(cycle.ends_at)}` : ""}</p>
+          <h3 className="mt-2 text-2xl font-extrabold">Premio {prize?.name ?? ""}</h3>
+          <p className="text-sm text-muted-foreground">{cycle ? (cycle.in_season ? `Camisetas, gorras y más · Premiación: ${formatDate(cycle.ends_at)}` : "Sin premios en vacaciones") : ""}</p>
           {prize && <img src={peluches} alt={`Peluche ${prize.name}`} className="mt-3 h-32 w-full rounded-3xl object-cover" style={{ objectPosition: prize.plushPos }} />}
         </Link>
 
