@@ -15,6 +15,7 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedAlbumRouteImport } from './routes/_authenticated/album'
+import { Route as AuthenticatedAyudaRouteImport } from './routes/_authenticated/ayuda'
 import { Route as AuthenticatedEspeciesRouteImport } from './routes/_authenticated/especies'
 import { Route as AuthenticatedInicioRouteImport } from './routes/_authenticated/inicio'
 import { Route as AuthenticatedPerfilRouteImport } from './routes/_authenticated/perfil'
@@ -51,6 +52,11 @@ const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
 const AuthenticatedAlbumRoute = AuthenticatedAlbumRouteImport.update({
   id: '/album',
   path: '/album',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAyudaRoute = AuthenticatedAyudaRouteImport.update({
+  id: '/ayuda',
+  path: '/ayuda',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedEspeciesRoute = AuthenticatedEspeciesRouteImport.update({
@@ -102,6 +108,7 @@ export interface FileRoutesByFullPath {
   '/reset-password': typeof ResetPasswordRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/album': typeof AuthenticatedAlbumRoute
+  '/ayuda': typeof AuthenticatedAyudaRoute
   '/especies': typeof AuthenticatedEspeciesRoute
   '/inicio': typeof AuthenticatedInicioRoute
   '/perfil': typeof AuthenticatedPerfilRoute
@@ -117,6 +124,7 @@ export interface FileRoutesByTo {
   '/reset-password': typeof ResetPasswordRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/album': typeof AuthenticatedAlbumRoute
+  '/ayuda': typeof AuthenticatedAyudaRoute
   '/especies': typeof AuthenticatedEspeciesRoute
   '/inicio': typeof AuthenticatedInicioRoute
   '/perfil': typeof AuthenticatedPerfilRoute
@@ -134,6 +142,7 @@ export interface FileRoutesById {
   '/reset-password': typeof ResetPasswordRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/_authenticated/album': typeof AuthenticatedAlbumRoute
+  '/_authenticated/ayuda': typeof AuthenticatedAyudaRoute
   '/_authenticated/especies': typeof AuthenticatedEspeciesRoute
   '/_authenticated/inicio': typeof AuthenticatedInicioRoute
   '/_authenticated/perfil': typeof AuthenticatedPerfilRoute
@@ -151,6 +160,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/admin'
     | '/album'
+    | '/ayuda'
     | '/especies'
     | '/inicio'
     | '/perfil'
@@ -166,6 +176,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/admin'
     | '/album'
+    | '/ayuda'
     | '/especies'
     | '/inicio'
     | '/perfil'
@@ -182,6 +193,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/_authenticated/admin'
     | '/_authenticated/album'
+    | '/_authenticated/ayuda'
     | '/_authenticated/especies'
     | '/_authenticated/inicio'
     | '/_authenticated/perfil'
@@ -241,6 +253,13 @@ declare module '@tanstack/react-router' {
       path: '/album'
       fullPath: '/album'
       preLoaderRoute: typeof AuthenticatedAlbumRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/ayuda': {
+      id: '/_authenticated/ayuda'
+      path: '/ayuda'
+      fullPath: '/ayuda'
+      preLoaderRoute: typeof AuthenticatedAyudaRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/especies': {
@@ -305,6 +324,7 @@ declare module '@tanstack/react-router' {
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
   AuthenticatedAlbumRoute: typeof AuthenticatedAlbumRoute
+  AuthenticatedAyudaRoute: typeof AuthenticatedAyudaRoute
   AuthenticatedEspeciesRoute: typeof AuthenticatedEspeciesRoute
   AuthenticatedInicioRoute: typeof AuthenticatedInicioRoute
   AuthenticatedPerfilRoute: typeof AuthenticatedPerfilRoute
@@ -318,6 +338,7 @@ interface AuthenticatedRouteRouteChildren {
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAdminRoute: AuthenticatedAdminRoute,
   AuthenticatedAlbumRoute: AuthenticatedAlbumRoute,
+  AuthenticatedAyudaRoute: AuthenticatedAyudaRoute,
   AuthenticatedEspeciesRoute: AuthenticatedEspeciesRoute,
   AuthenticatedInicioRoute: AuthenticatedInicioRoute,
   AuthenticatedPerfilRoute: AuthenticatedPerfilRoute,
