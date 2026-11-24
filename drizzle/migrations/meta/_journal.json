@@ -8,6 +8,13 @@
       "when": 1793844376912,
       "tag": "0000_icesi_vivo_schema",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1795550642687,
+      "tag": "0001_tighten_read_policies",
+      "breakpoints": true
     }
   ]
 }
