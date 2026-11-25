@@ -22,6 +22,13 @@
       "when": 1795551058374,
       "tag": "0002_weekly_cycles_monthly_animal",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1795566352801,
+      "tag": "0003_campus_monument_activities",
+      "breakpoints": true
     }
   ]
 }

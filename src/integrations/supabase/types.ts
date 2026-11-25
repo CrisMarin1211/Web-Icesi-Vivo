@@ -72,6 +72,30 @@ export type Database = {
           },
         ]
       }
+      campus_monuments: {
+        Row: {
+          id: string
+          label: string
+          latitude: number | null
+          longitude: number | null
+          species: string
+        }
+        Insert: {
+          id: string
+          label: string
+          latitude?: number | null
+          longitude?: number | null
+          species: string
+        }
+        Update: {
+          id?: string
+          label?: string
+          latitude?: number | null
+          longitude?: number | null
+          species?: string
+        }
+        Relationships: []
+      }
       cycles: {
         Row: {
           created_at: string
@@ -260,6 +284,92 @@ export type Database = {
           },
           {
             foreignKeyName: "memory_results_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      monument_codes: {
+        Row: {
+          code: string
+          monument_id: string
+        }
+        Insert: {
+          code: string
+          monument_id: string
+        }
+        Update: {
+          code?: string
+          monument_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "monument_codes_monument_id_fkey"
+            columns: ["monument_id"]
+            isOneToOne: true
+            referencedRelation: "campus_monuments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      monument_questions: {
+        Row: {
+          monument_id: string
+          question_id: string
+        }
+        Insert: {
+          monument_id: string
+          question_id: string
+        }
+        Update: {
+          monument_id?: string
+          question_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "monument_questions_monument_id_fkey"
+            columns: ["monument_id"]
+            isOneToOne: false
+            referencedRelation: "campus_monuments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "monument_questions_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: true
+            referencedRelation: "questions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      monument_unlocks: {
+        Row: {
+          created_at: string
+          monument_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          monument_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          monument_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "monument_unlocks_monument_id_fkey"
+            columns: ["monument_id"]
+            isOneToOne: false
+            referencedRelation: "campus_monuments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "monument_unlocks_user_id_fkey"
             columns: ["user_id"]
             isOneToOne: false
             referencedRelation: "profiles"
@@ -615,12 +725,17 @@ export type Database = {
           username: string
         }[]
       }
+      list_campus_monuments: { Args: never; Returns: Json }
       month_species: { Args: { _d: string }; Returns: string }
       submit_answer: {
         Args: { _choice: number; _question_id: string }
         Returns: Json
       }
       submit_memory: { Args: { _moves: number }; Returns: Json }
+      unlock_monument: {
+        Args: { _code: string; _monument_id: string }
+        Returns: boolean
+      }
     }
     Enums: {
       app_role: "admin" | "moderator" | "user"

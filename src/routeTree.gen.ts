@@ -18,6 +18,7 @@ import { Route as AuthenticatedAlbumRouteImport } from './routes/_authenticated/
 import { Route as AuthenticatedAyudaRouteImport } from './routes/_authenticated/ayuda'
 import { Route as AuthenticatedEspeciesRouteImport } from './routes/_authenticated/especies'
 import { Route as AuthenticatedInicioRouteImport } from './routes/_authenticated/inicio'
+import { Route as AuthenticatedMapaRouteImport } from './routes/_authenticated/mapa'
 import { Route as AuthenticatedPerfilRouteImport } from './routes/_authenticated/perfil'
 import { Route as AuthenticatedRankingRouteImport } from './routes/_authenticated/ranking'
 import { Route as AuthenticatedComunidadIndexRouteImport } from './routes/_authenticated/comunidad.index'
@@ -69,6 +70,11 @@ const AuthenticatedInicioRoute = AuthenticatedInicioRouteImport.update({
   path: '/inicio',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedMapaRoute = AuthenticatedMapaRouteImport.update({
+  id: '/mapa',
+  path: '/mapa',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedPerfilRoute = AuthenticatedPerfilRouteImport.update({
   id: '/perfil',
   path: '/perfil',
@@ -111,6 +117,7 @@ export interface FileRoutesByFullPath {
   '/ayuda': typeof AuthenticatedAyudaRoute
   '/especies': typeof AuthenticatedEspeciesRoute
   '/inicio': typeof AuthenticatedInicioRoute
+  '/mapa': typeof AuthenticatedMapaRoute
   '/perfil': typeof AuthenticatedPerfilRoute
   '/ranking': typeof AuthenticatedRankingRoute
   '/retos/$key': typeof AuthenticatedRetosKeyRoute
@@ -127,6 +134,7 @@ export interface FileRoutesByTo {
   '/ayuda': typeof AuthenticatedAyudaRoute
   '/especies': typeof AuthenticatedEspeciesRoute
   '/inicio': typeof AuthenticatedInicioRoute
+  '/mapa': typeof AuthenticatedMapaRoute
   '/perfil': typeof AuthenticatedPerfilRoute
   '/ranking': typeof AuthenticatedRankingRoute
   '/retos/$key': typeof AuthenticatedRetosKeyRoute
@@ -145,6 +153,7 @@ export interface FileRoutesById {
   '/_authenticated/ayuda': typeof AuthenticatedAyudaRoute
   '/_authenticated/especies': typeof AuthenticatedEspeciesRoute
   '/_authenticated/inicio': typeof AuthenticatedInicioRoute
+  '/_authenticated/mapa': typeof AuthenticatedMapaRoute
   '/_authenticated/perfil': typeof AuthenticatedPerfilRoute
   '/_authenticated/ranking': typeof AuthenticatedRankingRoute
   '/_authenticated/retos/$key': typeof AuthenticatedRetosKeyRoute
@@ -163,6 +172,7 @@ export interface FileRouteTypes {
     | '/ayuda'
     | '/especies'
     | '/inicio'
+    | '/mapa'
     | '/perfil'
     | '/ranking'
     | '/retos/$key'
@@ -179,6 +189,7 @@ export interface FileRouteTypes {
     | '/ayuda'
     | '/especies'
     | '/inicio'
+    | '/mapa'
     | '/perfil'
     | '/ranking'
     | '/retos/$key'
@@ -196,6 +207,7 @@ export interface FileRouteTypes {
     | '/_authenticated/ayuda'
     | '/_authenticated/especies'
     | '/_authenticated/inicio'
+    | '/_authenticated/mapa'
     | '/_authenticated/perfil'
     | '/_authenticated/ranking'
     | '/_authenticated/retos/$key'
@@ -276,6 +288,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedInicioRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/mapa': {
+      id: '/_authenticated/mapa'
+      path: '/mapa'
+      fullPath: '/mapa'
+      preLoaderRoute: typeof AuthenticatedMapaRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/perfil': {
       id: '/_authenticated/perfil'
       path: '/perfil'
@@ -327,6 +346,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedAyudaRoute: typeof AuthenticatedAyudaRoute
   AuthenticatedEspeciesRoute: typeof AuthenticatedEspeciesRoute
   AuthenticatedInicioRoute: typeof AuthenticatedInicioRoute
+  AuthenticatedMapaRoute: typeof AuthenticatedMapaRoute
   AuthenticatedPerfilRoute: typeof AuthenticatedPerfilRoute
   AuthenticatedRankingRoute: typeof AuthenticatedRankingRoute
   AuthenticatedRetosKeyRoute: typeof AuthenticatedRetosKeyRoute
@@ -341,6 +361,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAyudaRoute: AuthenticatedAyudaRoute,
   AuthenticatedEspeciesRoute: AuthenticatedEspeciesRoute,
   AuthenticatedInicioRoute: AuthenticatedInicioRoute,
+  AuthenticatedMapaRoute: AuthenticatedMapaRoute,
   AuthenticatedPerfilRoute: AuthenticatedPerfilRoute,
   AuthenticatedRankingRoute: AuthenticatedRankingRoute,
   AuthenticatedRetosKeyRoute: AuthenticatedRetosKeyRoute,

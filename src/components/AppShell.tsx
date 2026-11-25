@@ -1,13 +1,13 @@
 import { Link, Outlet, useNavigate } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
-import { Home, Leaf, Gamepad2, BookImage, Users, Trophy, User, LogOut, Shield, Sparkles, HeartHandshake } from "lucide-react";
+import { Home, Map, Gamepad2, BookImage, Users, Trophy, User, LogOut, Shield, Sparkles, HeartHandshake } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useMe } from "@/lib/data";
 import { Avatar } from "@/lib/media";
 
 const NAV = [
   { to: "/inicio", label: "Inicio", icon: Home },
-  { to: "/especies", label: "Especies", icon: Leaf },
+  { to: "/mapa", label: "Mapa", icon: Map },
   { to: "/retos", label: "Retos", icon: Gamepad2 },
   { to: "/album", label: "Álbum", icon: BookImage },
   { to: "/comunidad", label: "Comunidad", icon: Users },
