@@ -84,12 +84,12 @@ export function AppShell() {
         <header className="sticky top-0 z-30 flex items-center justify-between border-b bg-background/90 px-4 py-3 backdrop-blur">
           <Link
             to="/inicio"
-            className="font-display text-lg font-extrabold"
+            className="font-display text-lg font-extrabold md:hidden"
           >
             ICESI <span className="text-primary">VIVO</span>
           </Link>
 
-          <div className="flex items-center gap-3">
+          <div className="ml-auto flex items-center gap-3">
             {me?.isAdmin && (
               <Link
                 to="/admin"
@@ -101,16 +101,18 @@ export function AppShell() {
             )}
 
             <Link
-              to="/perfil"
-              aria-label="Mi perfil"
-              className="rounded-full transition-transform hover:scale-105"
-            >
-              <Avatar
-                path={me?.profile?.avatar_url}
-                name={me?.profile?.display_name}
-                className="h-9 w-9 text-xs"
-              />
-            </Link>
+  to="/perfil"
+  aria-label="Mi perfil"
+  className="flex items-center gap-2 rounded-full transition-transform hover:scale-105"
+>
+  <span className="text-sm font-medium">Perfil</span>
+  <Avatar
+    path={me?.profile?.avatar_url}
+    name={me?.profile?.display_name}
+    className="h-9 w-9 text-xs"
+  />
+
+</Link>
           </div>
         </header>
 
