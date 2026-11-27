@@ -11,7 +11,6 @@ const NAV = [
   { to: "/retos", label: "Retos", icon: Gamepad2 },
   { to: "/album", label: "Álbum", icon: BookImage },
   { to: "/comunidad", label: "Comunidad", icon: Users },
-  { to: "/ranking", label: "Ranking", icon: Trophy },
   { to: "/perfil", label: "Perfil", icon: User },
   { to: "/ayuda", label: "Ayuda", icon: HeartHandshake },
 ] as const;
