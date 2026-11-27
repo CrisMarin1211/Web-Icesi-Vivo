@@ -15,7 +15,8 @@ export const unlockMonument = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => unlockSchema.parse(data))
   .handler(async ({ context, data }) => {
     const { data: unlocked, error } = await context.supabase.rpc("unlock_monument", {
-      _monument_id: data.monumentId, _code: data.code,
+      _monument_id: data.monumentId,
+      _code: data.code,
     });
     if (error) throw new Error("No se pudo comprobar el código. Inténtalo de nuevo.");
     return { unlocked: unlocked === true };

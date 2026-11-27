@@ -26,7 +26,13 @@ export function useCycle() {
     queryFn: async () => {
       const { data, error } = await supabase.rpc("ensure_cycle");
       if (error) throw error;
-      return data as unknown as { id: string; starts_at: string; ends_at: string; prize_species: string; in_season: boolean };
+      return data as unknown as {
+        id: string;
+        starts_at: string;
+        ends_at: string;
+        prize_species: string;
+        in_season: boolean;
+      };
     },
   });
 }
@@ -66,7 +72,10 @@ export function useMyAnswers() {
         .from("answers")
         .select("question_id, week_start, is_correct, points, questions(challenge_key, species)")
         .eq("user_id", u.user!.id);
-      const { data: mem } = await supabase.from("memory_results").select("*").eq("user_id", u.user!.id);
+      const { data: mem } = await supabase
+        .from("memory_results")
+        .select("*")
+        .eq("user_id", u.user!.id);
       return { answers: data ?? [], memory: mem ?? [] };
     },
   });

@@ -17,13 +17,28 @@ export function useCountdown(target?: string | undefined) {
 
 export function Countdown({ target, compact }: { target?: string | undefined; compact?: boolean }) {
   const c = useCountdown(target);
-  const parts: [number, string][] = [[c.days, "días"], [c.hours, "horas"], [c.minutes, "min"], [c.seconds, "seg"]];
-  if (compact) return <span className="tabular-nums">{c.days}d {c.hours}h {c.minutes}m</span>;
+  const parts: [number, string][] = [
+    [c.days, "días"],
+    [c.hours, "horas"],
+    [c.minutes, "min"],
+    [c.seconds, "seg"],
+  ];
+  if (compact)
+    return (
+      <span className="tabular-nums">
+        {c.days}d {c.hours}h {c.minutes}m
+      </span>
+    );
   return (
     <div className="flex gap-2">
       {parts.map(([v, l]) => (
-        <div key={l} className="min-w-14 rounded-2xl bg-primary-foreground/15 px-2 py-2 text-center">
-          <div className="font-display text-2xl font-bold tabular-nums">{String(v).padStart(2, "0")}</div>
+        <div
+          key={l}
+          className="min-w-14 rounded-2xl bg-primary-foreground/15 px-2 py-2 text-center"
+        >
+          <div className="font-display text-2xl font-bold tabular-nums">
+            {String(v).padStart(2, "0")}
+          </div>
           <div className="text-[10px] uppercase tracking-wide opacity-80">{l}</div>
         </div>
       ))}

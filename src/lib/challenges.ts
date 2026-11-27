@@ -15,15 +15,74 @@ export interface Challenge {
 }
 
 export const CHALLENGES: Challenge[] = [
-  { key: "quien", number: 1, name: "¿Quién es quién?", description: "Identifica las especies a partir de fotografías reales.", instructions: "Observa cada fotografía y elige la especie correcta. Cada acierto suma 10 puntos.", count: 5, species: "iguana", tone: "primary" },
-  { key: "mito", number: 2, name: "Mito o realidad", description: "Afirmaciones sobre alimentación y comportamiento.", instructions: "Lee cada afirmación y decide si es mito o realidad.", count: 5, species: "pato", tone: "violet" },
-  { key: "detectives", number: 3, name: "Detectives de la fauna", description: "Relaciona cada especie con sus rasgos y su hábitat.", instructions: "Descubre qué especie corresponde a cada pista.", count: 5, species: "ardilla", tone: "nature" },
-  { key: "harias", number: 4, name: "¿Qué harías tú?", description: "Situaciones cotidianas de convivencia con la fauna.", instructions: "Elige la acción más responsable en cada situación.", count: 5, species: "guatin", tone: "lime" },
-  { key: "memoria", number: 5, name: "Memoria silvestre", description: "Encuentra las parejas de fotografías de las especies.", instructions: "Voltea dos cartas a la vez. Menos movimientos = más puntos (máx. 40).", count: 8, species: "ardilla", tone: "violet" },
-  { key: "relampago", number: 6, name: "Desafío relámpago", description: "Cinco preguntas en el menor tiempo posible.", instructions: "Tienes 15 segundos por pregunta. Si se acaba el tiempo, cuenta como incorrecta.", count: 5, species: "pato", tone: "primary", timed: true },
+  {
+    key: "quien",
+    number: 1,
+    name: "¿Quién es quién?",
+    description: "Identifica las especies a partir de fotografías reales.",
+    instructions:
+      "Observa cada fotografía y elige la especie correcta. Cada acierto suma 10 puntos.",
+    count: 5,
+    species: "iguana",
+    tone: "primary",
+  },
+  {
+    key: "mito",
+    number: 2,
+    name: "Mito o realidad",
+    description: "Afirmaciones sobre alimentación y comportamiento.",
+    instructions: "Lee cada afirmación y decide si es mito o realidad.",
+    count: 5,
+    species: "pato",
+    tone: "violet",
+  },
+  {
+    key: "detectives",
+    number: 3,
+    name: "Detectives de la fauna",
+    description: "Relaciona cada especie con sus rasgos y su hábitat.",
+    instructions: "Descubre qué especie corresponde a cada pista.",
+    count: 5,
+    species: "ardilla",
+    tone: "nature",
+  },
+  {
+    key: "harias",
+    number: 4,
+    name: "¿Qué harías tú?",
+    description: "Situaciones cotidianas de convivencia con la fauna.",
+    instructions: "Elige la acción más responsable en cada situación.",
+    count: 5,
+    species: "guatin",
+    tone: "lime",
+  },
+  {
+    key: "memoria",
+    number: 5,
+    name: "Memoria silvestre",
+    description: "Encuentra las parejas de fotografías de las especies.",
+    instructions: "Voltea dos cartas a la vez. Menos movimientos = más puntos (máx. 40).",
+    count: 8,
+    species: "ardilla",
+    tone: "violet",
+  },
+  {
+    key: "relampago",
+    number: 6,
+    name: "Desafío relámpago",
+    description: "Cinco preguntas en el menor tiempo posible.",
+    instructions: "Tienes 15 segundos por pregunta. Si se acaba el tiempo, cuenta como incorrecta.",
+    count: 5,
+    species: "pato",
+    tone: "primary",
+    timed: true,
+  },
 ];
 
-export const challengeByKey = Object.fromEntries(CHALLENGES.map((c) => [c.key, c])) as Record<ChallengeKey, Challenge>;
+export const challengeByKey = Object.fromEntries(CHALLENGES.map((c) => [c.key, c])) as Record<
+  ChallengeKey,
+  Challenge
+>;
 
 /** Monday 00:00 (Bogotá, UTC-5) of the current week, as Date. */
 export function weekStart(now = new Date()): Date {
@@ -45,5 +104,9 @@ export function featuredChallenge(now = new Date()): Challenge {
 }
 
 export function formatDate(d: Date | string) {
-  return new Date(d).toLocaleDateString("es-CO", { day: "numeric", month: "short", timeZone: "America/Bogota" });
+  return new Date(d).toLocaleDateString("es-CO", {
+    day: "numeric",
+    month: "short",
+    timeZone: "America/Bogota",
+  });
 }

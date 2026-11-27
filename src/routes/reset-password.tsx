@@ -24,20 +24,38 @@ function Reset() {
   const navigate = useNavigate();
   async function submit(e: React.FormEvent) {
     e.preventDefault();
-    if (password.length < 8) { toast.error("Mínimo 8 caracteres"); return; }
+    if (password.length < 8) {
+      toast.error("Mínimo 8 caracteres");
+      return;
+    }
     setLoading(true);
     const { error } = await supabase.auth.updateUser({ password });
     setLoading(false);
-    if (error) { toast.error(error.message); return; }
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
     toast.success("Contraseña actualizada");
     navigate({ to: "/inicio" });
   }
   return (
     <div className="flex min-h-screen items-center justify-center p-5">
-      <form onSubmit={submit} className="w-full max-w-sm space-y-4 rounded-4xl bg-card p-7 shadow-card">
+      <form
+        onSubmit={submit}
+        className="w-full max-w-sm space-y-4 rounded-4xl bg-card p-7 shadow-card"
+      >
         <h1 className="text-2xl font-extrabold">Nueva contraseña</h1>
-        <Input type="password" required placeholder="Nueva contraseña" value={password} onChange={(e) => setPassword(e.target.value)} className="h-12 rounded-2xl" />
-        <Button type="submit" size="lg" className="w-full" disabled={loading}>Guardar</Button>
+        <Input
+          type="password"
+          required
+          placeholder="Nueva contraseña"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="h-12 rounded-2xl"
+        />
+        <Button type="submit" size="lg" className="w-full" disabled={loading}>
+          Guardar
+        </Button>
       </form>
     </div>
   );

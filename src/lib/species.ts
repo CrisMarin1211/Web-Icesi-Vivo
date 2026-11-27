@@ -29,7 +29,11 @@ export const SPECIES: Species[] = [
     short: "Reptil herbívoro que toma el sol en ramas y muros del campus.",
     diet: "Hojas, flores y frutos.",
     habitat: "Árboles cercanos a zonas de agua y jardines soleados.",
-    traits: ["Cresta de espinas en el lomo", "Papada bajo el cuello", "Cola larga que puede regenerar"],
+    traits: [
+      "Cresta de espinas en el lomo",
+      "Papada bajo el cuello",
+      "Cola larga que puede regenerar",
+    ],
     care: "Rodéala dejando espacio: tomar el sol es vital para regular su temperatura.",
     tone: "nature",
   },
@@ -42,7 +46,11 @@ export const SPECIES: Species[] = [
     short: "Ágil acróbata diurna de cola rojiza y esponjosa.",
     diet: "Frutos, semillas y nueces.",
     habitat: "Copas de los árboles; baja al suelo a buscar alimento.",
-    traits: ["Cola esponjosa que da equilibrio", "Activa de día", "Dientes que crecen toda la vida"],
+    traits: [
+      "Cola esponjosa que da equilibrio",
+      "Activa de día",
+      "Dientes que crecen toda la vida",
+    ],
     care: "No la alimentes: la comida humana la enferma y la vuelve dependiente.",
     tone: "violet",
   },
@@ -68,13 +76,20 @@ export const SPECIES: Species[] = [
     short: "Roedor tímido, jardinero del bosque que siembra semillas.",
     diet: "Frutos y semillas caídas.",
     habitat: "Zonas boscosas y bordes de jardín.",
-    traits: ["Patas delgadas y veloces", "Cola casi imperceptible", "Entierra semillas como reserva"],
+    traits: [
+      "Patas delgadas y veloces",
+      "Cola casi imperceptible",
+      "Entierra semillas como reserva",
+    ],
     care: "Obsérvalo en silencio y a distancia: se estresa con facilidad.",
     tone: "lime",
   },
 ];
 
-export const speciesByKey = Object.fromEntries(SPECIES.map((s) => [s.key, s])) as Record<SpeciesKey, Species>;
+export const speciesByKey = Object.fromEntries(SPECIES.map((s) => [s.key, s])) as Record<
+  SpeciesKey,
+  Species
+>;
 
 export const toneClasses: Record<Species["tone"], string> = {
   nature: "bg-nature text-nature-foreground",

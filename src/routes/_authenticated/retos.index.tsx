@@ -1,13 +1,6 @@
-
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import {
-  CheckCircle2,
-  Star,
-  Timer,
-  Trophy,
-  Target,
-} from "lucide-react";
+import { CheckCircle2, Star, Timer, Trophy, Target } from "lucide-react";
 
 import {
   CHALLENGES,
@@ -30,8 +23,7 @@ export const Route = createFileRoute("/_authenticated/retos/")({
       { title: "Juegos y retos — ICESI VIVO" },
       {
         name: "description",
-        content:
-          "El desafío ICESI VIVO: retos semanales de reconocimiento y cuidado de la fauna.",
+        content: "El desafío ICESI VIVO: retos semanales de reconocimiento y cuidado de la fauna.",
       },
     ],
   }),
@@ -46,9 +38,7 @@ const TONE = {
 };
 
 function Retos() {
-  const [activeTab, setActiveTab] = useState<"retos" | "ranking">(
-    "retos"
-  );
+  const [activeTab, setActiveTab] = useState<"retos" | "ranking">("retos");
 
   const { data } = useMyAnswers();
 
@@ -69,11 +59,8 @@ function Retos() {
     }
 
     const rows =
-      data?.answers.filter(
-        (a) =>
-          a.week_start === week &&
-          a.questions?.challenge_key === key
-      ) ?? [];
+      data?.answers.filter((a) => a.week_start === week && a.questions?.challenge_key === key) ??
+      [];
 
     return {
       done: rows.length,
@@ -123,24 +110,16 @@ function Retos() {
 
       {/* Contenido de Retos */}
       {activeTab === "retos" ? (
-        <div
-          role="tabpanel"
-          className="space-y-5"
-        >
+        <div role="tabpanel" className="space-y-5">
           {/* Encabezado */}
           <div className="rounded-4xl bg-hero p-6 text-primary-foreground shadow-card">
-            <p className="text-sm font-semibold text-lime">
-              El desafío ICESI VIVO
-            </p>
+            <p className="text-sm font-semibold text-lime">El desafío ICESI VIVO</p>
 
-            <h1 className="text-3xl font-extrabold">
-              Retos de la semana
-            </h1>
+            <h1 className="text-3xl font-extrabold">Retos de la semana</h1>
 
             <p className="mt-1 text-sm opacity-90">
-              Del {formatDate(start)} al{" "}
-              {formatDate(new Date(end.getTime() - 1))}. Se renuevan
-              cada lunes: la precisión vale más que la cantidad.
+              Del {formatDate(start)} al {formatDate(new Date(end.getTime() - 1))}. Se renuevan cada
+              lunes: la precisión vale más que la cantidad.
             </p>
 
             <div className="mt-4">
@@ -155,13 +134,8 @@ function Retos() {
               const complete = p.done >= p.total;
 
               return (
-                <article
-                  key={c.key}
-                  className="overflow-hidden rounded-4xl bg-card shadow-card"
-                >
-                  <div
-                    className={`relative flex h-32 items-end p-5 ${TONE[c.tone]}`}
-                  >
+                <article key={c.key} className="overflow-hidden rounded-4xl bg-card shadow-card">
+                  <div className={`relative flex h-32 items-end p-5 ${TONE[c.tone]}`}>
                     <img
                       src={speciesByKey[c.species].image}
                       alt=""
@@ -169,13 +143,9 @@ function Retos() {
                     />
 
                     <div>
-                      <p className="text-xs font-bold opacity-80">
-                        Reto {c.number}
-                      </p>
+                      <p className="text-xs font-bold opacity-80">Reto {c.number}</p>
 
-                      <h2 className="text-xl font-extrabold">
-                        {c.name}
-                      </h2>
+                      <h2 className="text-xl font-extrabold">{c.name}</h2>
                     </div>
 
                     {featured.key === c.key && (
@@ -187,16 +157,10 @@ function Retos() {
                   </div>
 
                   <div className="space-y-3 p-5">
-                    <p className="text-sm text-muted-foreground">
-                      {c.description}
-                    </p>
+                    <p className="text-sm text-muted-foreground">{c.description}</p>
 
                     <div className="flex items-center gap-3 text-xs text-muted-foreground">
-                      <span>
-                        {c.key === "memoria"
-                          ? "8 parejas"
-                          : `${c.count} preguntas`}
-                      </span>
+                      <span>{c.key === "memoria" ? "8 parejas" : `${c.count} preguntas`}</span>
 
                       {c.timed && (
                         <span className="flex items-center gap-1">
@@ -205,43 +169,22 @@ function Retos() {
                         </span>
                       )}
 
-                      <span className="ml-auto font-semibold text-foreground">
-                        {p.points} pts
-                      </span>
+                      <span className="ml-auto font-semibold text-foreground">{p.points} pts</span>
                     </div>
 
-                    <Progress
-                      value={(p.done / p.total) * 100}
-                      className="h-2 [&>div]:bg-nature"
-                    />
+                    <Progress value={(p.done / p.total) * 100} className="h-2 [&>div]:bg-nature" />
 
                     {complete ? (
-                      <Button
-                        asChild
-                        variant="nature"
-                        className="w-full"
-                      >
-                        <Link
-                          to="/retos/$key"
-                          params={{ key: c.key }}
-                        >
+                      <Button asChild variant="nature" className="w-full">
+                        <Link to="/retos/$key" params={{ key: c.key }}>
                           <CheckCircle2 />
                           Completado · ver resultados
                         </Link>
                       </Button>
                     ) : (
-                      <Button
-                        asChild
-                        variant="lime"
-                        className="w-full"
-                      >
-                        <Link
-                          to="/retos/$key"
-                          params={{ key: c.key }}
-                        >
-                          {p.done > 0
-                            ? "Continuar"
-                            : "Participar"}
+                      <Button asChild variant="lime" className="w-full">
+                        <Link to="/retos/$key" params={{ key: c.key }}>
+                          {p.done > 0 ? "Continuar" : "Participar"}
                         </Link>
                       </Button>
                     )}

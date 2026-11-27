@@ -1,4 +1,3 @@
-
 import { Link, Outlet, useNavigate } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
 import {
@@ -82,10 +81,7 @@ export function AppShell() {
       <div className="flex min-w-0 flex-1 flex-col pb-24 md:pb-0">
         {/* ENCABEZADO SUPERIOR: PC Y MÓVIL */}
         <header className="sticky top-0 z-30 flex items-center justify-between border-b bg-background/90 px-4 py-3 backdrop-blur">
-          <Link
-            to="/inicio"
-            className="font-display text-lg font-extrabold"
-          >
+          <Link to="/inicio" className="font-display text-lg font-extrabold">
             ICESI <span className="text-primary">VIVO</span>
           </Link>
 

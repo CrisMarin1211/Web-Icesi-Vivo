@@ -7,7 +7,15 @@ describe("Monument access", () => {
     expect(unlockSchema.parse({ monumentId: "iguana", code: "iv-01" }).code).toBe("IV-01");
   });
   it("does not turn unconfirmed positions into map markers", () => {
-    const m: Monument = { id: "iguana", species: "iguana", label: "Punto 1", latitude: null, longitude: null, code_ready: false, unlocked: false };
+    const m: Monument = {
+      id: "iguana",
+      species: "iguana",
+      label: "Punto 1",
+      latitude: null,
+      longitude: null,
+      code_ready: false,
+      unlocked: false,
+    };
     expect(isLocated(m)).toBe(false);
     expect(isLocated({ ...m, latitude: 3.34, longitude: -76.53 })).toBe(true);
     expect(isLocated({ ...m, latitude: 100, longitude: -76.53 })).toBe(false);
