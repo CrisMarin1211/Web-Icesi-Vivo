@@ -11,7 +11,6 @@ const NAV = [
   { to: "/retos", label: "Retos", icon: Gamepad2 },
   { to: "/album", label: "Álbum", icon: BookImage },
   { to: "/comunidad", label: "Comunidad", icon: Users },
-  { to: "/ranking", label: "Ranking", icon: Trophy },
   { to: "/perfil", label: "Perfil", icon: User },
   { to: "/ayuda", label: "Ayuda", icon: HeartHandshake },
 ] as const;
@@ -32,7 +31,6 @@ export function AppShell() {
     <div className="min-h-screen md:flex">
       <aside className="sticky top-0 hidden h-screen w-64 shrink-0 flex-col gap-1 border-r bg-card p-5 md:flex">
         <Link to="/inicio" className="mb-6 flex items-center gap-2">
-          <span className="grid h-10 w-10 place-items-center rounded-2xl bg-primary text-primary-foreground"><Sparkles className="h-5 w-5" /></span>
           <span className="font-display text-xl font-extrabold tracking-tight">ICESI <span className="text-primary">VIVO</span></span>
         </Link>
         {NAV.map(({ to, label, icon: Icon }) => (
